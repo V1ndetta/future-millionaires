@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  ENROLLED
+  ARCHIVED
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  login        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Coach {
+  id          String     @id @default(cuid())
+  name        String
+  role        String
+  rank        String
+  bio         String
+  imageUrl    String
+  experience  Int
+  achievements String
+  order       Int        @default(0)
+  isPublished Boolean    @default(true)
+  schedules   Schedule[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Program {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  ageRange    String
+  level       String
+  description String
+  duration    String
+  price       String
+  accent      String     @default("lime")
+  order       Int        @default(0)
+  isPublished Boolean    @default(true)
+  schedules   Schedule[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Branch {
+  id          String     @id @default(cuid())
+  name        String
+  address     String
+  district    String
+  phone       String
+  hours       String
+  mapUrl      String?
+  order       Int        @default(0)
+  isPublished Boolean    @default(true)
+  schedules   Schedule[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Schedule {
+  id          String   @id @default(cuid())
+  dayOfWeek   String
+  startTime   String
+  endTime     String
+  groupName   String
+  spotsLeft   Int      @default(0)
+  coachId     String
+  programId   String
+  branchId    String
+  coach       Coach    @relation(fields: [coachId], references: [id], onDelete: Cascade)
+  program     Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  branch      Branch   @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model StudentAchievement {
+  id          String   @id @default(cuid())
+  studentName String
+  title       String
+  event       String
+  date        DateTime
+  place       String
+  imageUrl    String?
+  description String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NewsPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String
+  imageUrl    String
+  publishedAt DateTime @default(now())
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  title       String
+  alt         String
+  imageUrl    String
+  category    String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id         String     @id @default(cuid())
+  name       String
+  phone      String
+  studentAge Int
+  level      String
+  program    String
+  comment    String?
+  status     LeadStatus @default(NEW)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model SiteSettings {
+  id          String   @id @default("main")
+  schoolName  String
+  shortName   String
+  tagline     String
+  description String
+  phone       String
+  email       String
+  address     String
+  telegram    String?
+  instagram   String?
+  whatsapp    String?
+  foundedYear Int
+  studentsCount Int
+  updatedAt   DateTime @updatedAt
+}
