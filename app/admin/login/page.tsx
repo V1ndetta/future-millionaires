@@ -9,5 +9,5 @@ export const metadata: Metadata = { title: "Вход в админ-панель"
 
 export default async function LoginPage() {
   if (await getSessionUserId()) redirect("/admin");
-  return <main className="login-page"><div className="login-visual"><Image src="/images/tournament.png" alt="" fill priority sizes="50vw" /></div><div className="login-panel"><div className="login-card"><Logo /><p className="eyebrow">Закрытый раздел</p><h1 className="heading-lg">Панель директора</h1><p className="text-muted">Управление сайтом, расписанием и заявками.</p><LoginForm /></div></div></main>;
+  return <main className="login-page"><div className="login-visual"><Image src="/images/tournament.png" alt="" fill loading="eager" sizes="50vw" /></div><div className="login-panel"><div className="login-card"><Logo /><p className="eyebrow">Закрытый раздел</p><h1 className="heading-lg">Панель директора</h1><p className="text-muted">Управление сайтом, расписанием и заявками.</p><LoginForm /></div></div></main>;
 }

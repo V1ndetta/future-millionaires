@@ -29,7 +29,7 @@ model Coach {
   role        String
   rank        String
   bio         String
-  imageUrl    String
+  imageUrl    String?
   experience  Int
   achievements String
   order       Int        @default(0)
@@ -110,7 +110,7 @@ model NewsPost {
   excerpt     String
   content     String
   category    String
-  imageUrl    String
+  imageUrl    String?
   publishedAt DateTime @default(now())
   isPublished Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -121,7 +121,7 @@ model GalleryImage {
   id          String   @id @default(cuid())
   title       String
   alt         String
-  imageUrl    String
+  imageUrl    String?
   category    String
   order       Int      @default(0)
   isPublished Boolean  @default(true)
@@ -148,6 +148,8 @@ model SiteSettings {
   shortName   String
   tagline     String
   description String
+  city        String
+  country     String
   phone       String
   email       String
   address     String
@@ -156,5 +158,32 @@ model SiteSettings {
   whatsapp    String?
   foundedYear Int
   studentsCount Int
+  updatedAt   DateTime @updatedAt
+}
+
+model PageContent {
+  key         String   @id
+  eyebrow     String   @default("")
+  title       String
+  description String   @default("")
+  body        String   @default("")
+  ctaText     String   @default("")
+  updatedAt   DateTime @updatedAt
+}
+
+model HomeStat {
+  id          String   @id @default(cuid())
+  value       String
+  label       String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model RateLimitBucket {
+  key         String   @id
+  count       Int      @default(1)
+  windowStart DateTime
   updatedAt   DateTime @updatedAt
 }

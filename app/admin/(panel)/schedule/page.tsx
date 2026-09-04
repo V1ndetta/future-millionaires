@@ -3,7 +3,7 @@ import { CrudManager, type FieldSpec } from "@/components/admin/crud-manager";
 import { getBranches, getCoaches, getPrograms, getSchedules } from "@/lib/data";
 
 export default async function AdminSchedulePage() {
-  const [items, coaches, programs, branches] = await Promise.all([getSchedules(), getCoaches(true), getPrograms(true), getBranches(true)]);
+  const [items, coaches, programs, branches] = await Promise.all([getSchedules(true), getCoaches(true), getPrograms(true), getBranches(true)]);
   const fields: FieldSpec[] = [
     { name: "dayOfWeek", label: "День недели", type: "select", required: true, options: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"].map((value) => ({ label: value, value })) },
     { name: "groupName", label: "Название группы", required: true }, { name: "startTime", label: "Начало", required: true, placeholder: "16:00" }, { name: "endTime", label: "Окончание", required: true, placeholder: "17:30" }, { name: "spotsLeft", label: "Свободных мест", type: "number" },

@@ -38,7 +38,7 @@ export async function createAdminSession(userId: string) {
 
 export async function clearAdminSession() {
   const cookieStore = await cookies();
-  cookieStore.set(COOKIE_NAME, "", { httpOnly: true, expires: new Date(0), path: "/" });
+  cookieStore.set(COOKIE_NAME, "", { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax", expires: new Date(0), path: "/" });
 }
 
 export async function getSessionUserId() {
@@ -53,11 +53,15 @@ export async function getSessionUserId() {
   }
 }
 
-export const requireAdmin = cache(async function requireAdmin() {
+export const getAdminUser = cache(async function getAdminUser() {
   const userId = await getSessionUserId();
-  if (!userId) redirect("/admin/login");
-
+  if (!userId) return null;
   const user = await prisma.adminUser.findUnique({ where: { id: userId } });
+  return user ? { id: user.id, name: user.name, login: user.login } : null;
+});
+
+export const requireAdmin = cache(async function requireAdmin() {
+  const user = await getAdminUser();
   if (!user) redirect("/admin/login");
-  return { id: user.id, name: user.name, login: user.login };
+  return user;
 });

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Award, BookOpen, CalendarDays, Contact, GalleryHorizontal, LayoutDashboard, MapPin, Newspaper, Settings, Users } from "lucide-react";
+import { Award, BookOpen, CalendarDays, Contact, FileText, GalleryHorizontal, LayoutDashboard, MapPin, Newspaper, Settings, Users } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { logoutAction } from "@/lib/actions/auth-actions";
 
 const links = [
-  ["Обзор", "/admin", LayoutDashboard], ["Заявки", "/admin/leads", Contact], ["Тренеры", "/admin/coaches", Users], ["Программы", "/admin/programs", BookOpen], ["Расписание", "/admin/schedule", CalendarDays], ["Филиалы", "/admin/branches", MapPin], ["Достижения", "/admin/achievements", Award], ["Новости", "/admin/news", Newspaper], ["Галерея", "/admin/gallery", GalleryHorizontal], ["Настройки", "/admin/settings", Settings],
+  ["Обзор", "/admin", LayoutDashboard], ["Заявки", "/admin/leads", Contact], ["Тексты сайта", "/admin/content", FileText], ["Тренеры", "/admin/coaches", Users], ["Программы", "/admin/programs", BookOpen], ["Расписание", "/admin/schedule", CalendarDays], ["Филиалы", "/admin/branches", MapPin], ["Достижения", "/admin/achievements", Award], ["Новости", "/admin/news", Newspaper], ["Галерея", "/admin/gallery", GalleryHorizontal], ["Настройки", "/admin/settings", Settings],
 ] as const;
 
 export function AdminSidebar({ user }: { user: { name: string; login: string } }) {

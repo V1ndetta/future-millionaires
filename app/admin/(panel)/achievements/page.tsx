@@ -3,7 +3,7 @@ import { CrudManager, type FieldSpec } from "@/components/admin/crud-manager";
 import { getAchievements } from "@/lib/data";
 
 const fields: FieldSpec[] = [
-  { name: "studentName", label: "Ученик", required: true }, { name: "title", label: "Результат", required: true }, { name: "event", label: "Событие", required: true }, { name: "place", label: "Место", required: true }, { name: "date", label: "Дата", type: "date", required: true }, { name: "imageUrl", label: "URL изображения", full: true }, { name: "description", label: "Описание", type: "textarea", required: true, full: true }, { name: "order", label: "Порядок", type: "number" }, { name: "isPublished", label: "Опубликовано", type: "checkbox" },
+  { name: "studentName", label: "Ученик", required: true }, { name: "title", label: "Результат", required: true }, { name: "event", label: "Событие", required: true }, { name: "place", label: "Место", required: true }, { name: "date", label: "Дата", type: "date", required: true }, { name: "imageUrl", label: "Фотография", type: "image", full: true }, { name: "description", label: "Описание", type: "textarea", required: true, full: true }, { name: "order", label: "Порядок", type: "number" }, { name: "isPublished", label: "Опубликовано", type: "checkbox" },
 ];
 
 export default async function AdminAchievementsPage() {
