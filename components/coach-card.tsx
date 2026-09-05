@@ -7,8 +7,9 @@ export function CoachCard({ coach, eager = false }: { coach: { name: string; rol
       <div className="card-body">
         <span className="card-number">{coach.rank}</span>
         <h3 className="heading-md" style={{ marginTop: ".75rem" }}>{coach.name}</h3>
-        <p className="text-muted">{coach.role} · {coach.experience} лет опыта</p>
+        <p className="text-muted">{coach.role}{coach.experience > 0 ? ` · ${coach.experience}+ лет опыта` : ""}</p>
         <p>{coach.bio}</p>
+        {coach.achievements ? <p className="coach-achievements">{coach.achievements}</p> : null}
       </div>
     </article>
   );
