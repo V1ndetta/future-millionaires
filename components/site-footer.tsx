@@ -13,6 +13,8 @@ export async function SiteFooter() {
           </nav>
           <nav className="footer-nav" aria-label="Контакты">
             {settings.phone ? <a href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`}>{settings.phone}</a> : null}
+            {settings.whatsapp ? <a href={settings.whatsapp} target="_blank" rel="noreferrer">WhatsApp ↗</a> : null}
+            {settings.instagram ? <a href={settings.instagram} target="_blank" rel="noreferrer">Instagram @bm.chess ↗</a> : null}
             {settings.email ? <a href={`mailto:${settings.email}`}>{settings.email}</a> : null}
             {settings.address ? <span className="text-muted">{settings.address}</span> : null}
             <Link href="/admin">Вход для директора</Link>
