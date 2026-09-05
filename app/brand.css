@@ -1,0 +1,86 @@
+:root {
+  --ink: #090909;
+  --ink-soft: #151515;
+  --paper: #f7f7f7;
+  --paper-deep: #ececec;
+  --muted: #656565;
+  --line: rgba(9, 9, 9, 0.15);
+  --lime: #e31b23;
+  --signal: #b30f16;
+  --blue: #e31b23;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
+}
+
+body { background: var(--paper); color: var(--ink); }
+::selection { background: var(--lime); color: #fff; }
+
+.btn-primary { background: var(--lime); color: #fff; }
+.btn-primary:hover { background: #bf1118; }
+.btn-dark:hover { background: #202020; }
+.btn:focus-visible,
+.nav-link:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible { outline-color: rgba(227, 27, 35, .72); }
+
+.site-header { background: color-mix(in srgb, #fff 92%, transparent); }
+.nav-link { color: #444; }
+.hero { background: #080808; }
+.hero-media::before {
+  background: linear-gradient(90deg, rgba(5,5,5,.98) 0%, rgba(5,5,5,.82) 40%, rgba(5,5,5,.18) 78%),
+              linear-gradient(0deg, rgba(5,5,5,.82) 0%, transparent 55%);
+}
+.hero-image { filter: grayscale(.15) saturate(.85) contrast(1.1); }
+.hero-tag,
+.hero-scroll { color: var(--lime); }
+.hero-tag span { background: var(--lime); box-shadow: 0 0 0 .35rem rgba(227,27,35,.14); }
+
+.ticker { background: var(--lime); color: #fff; border-color: #090909; }
+.card { background: #fff; }
+.media-frame { background: #dedede; }
+.program-card::after { border-color: var(--lime); }
+.program-card[data-accent="blue"],
+.program-card[data-accent="red"],
+.program-card[data-accent="lime"] { --accent: var(--lime); }
+.dark-section { background: #080808; }
+.quote em,
+.achievement-result { color: var(--lime); }
+.category { background: #090909; color: #fff; }
+
+.lead-section { background: var(--lime); color: #fff; }
+.lead-section .eyebrow,
+.lead-section .lede,
+.lead-section .lead-description,
+.lead-section .section-copy,
+.lead-section label { color: #fff; }
+.lead-section input,
+.lead-section select,
+.lead-section textarea { background: #fff; color: #090909; border-color: rgba(0,0,0,.24); }
+.lead-section .btn-dark { background: #090909; color: #fff; }
+
+.editorial-grid { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.metric { grid-column: auto; background: #fff; }
+
+.coach-card .card-body { min-height: 20rem; }
+.coach-achievements { margin-top: 1.15rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .86rem; line-height: 1.55; color: #4c4c4c; }
+
+.coach-profile-list { display: grid; gap: 1.5rem; }
+.coach-profile { display: grid; grid-template-columns: minmax(17rem, .72fr) 1.28fr; min-height: 34rem; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+.coach-profile:nth-child(even) { grid-template-columns: 1.28fr minmax(17rem, .72fr); }
+.coach-profile:nth-child(even) .coach-profile-media { order: 2; }
+.coach-profile-media { position: relative; min-height: 32rem; background: #e6e6e6; }
+.coach-profile-media img { object-fit: cover; }
+.coach-profile-copy { padding: clamp(2rem, 5vw, 4.5rem); display: flex; flex-direction: column; justify-content: center; }
+.coach-profile-rank { margin: 1rem 0 1.4rem; color: var(--lime); font-weight: 800; }
+.coach-profile-bio { max-width: 52rem; }
+.coach-profile-facts { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); display: grid; gap: .75rem; }
+.coach-profile-facts strong { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.coach-profile-facts p { margin: .3rem 0 0; }
+
+@media (max-width: 820px) {
+  .coach-profile,
+  .coach-profile:nth-child(even) { grid-template-columns: 1fr; }
+  .coach-profile:nth-child(even) .coach-profile-media { order: 0; }
+  .coach-profile-media { min-height: 25rem; }
+}
